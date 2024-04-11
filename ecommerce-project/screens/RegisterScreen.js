@@ -3,12 +3,15 @@ import {
     Text,
     View,
     SafeAreaView,
+    Pressable,
     Image,
     KeyboardAvoidingView,
     TextInput,
-    Pressable,
-    Alert
-} from "react-native";
+    Alert,
+
+} 
+
+from "react-native";
 import React, { useState } from "react";
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
@@ -30,7 +33,7 @@ const RegisterScreen = () => {
 
         //send a POST request to the server
         axios
-            .post("http://localhost:8000/register", user)
+            .post("http://192.168.43.194:8000/register", user)
             .then((response) => {
                 console.log(response);
                 Alert.alert(
@@ -47,7 +50,9 @@ const RegisterScreen = () => {
             });
     };
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: "white", alignItems: "center", marginTop:50 }}>
+      <SafeAreaView
+        style={{ flex: 1, backgroundColor: "white", alignItems: "center",marginTop:50  }}
+      >
             <View>
                 <Image
                     style={{ width: 150, height: 100 }}
