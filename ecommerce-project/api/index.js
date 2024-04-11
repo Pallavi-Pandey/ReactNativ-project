@@ -82,6 +82,10 @@ const sendVerificationEmail = async (email, verificationToken) => {
             await newUser.save();
 
             sendVerificationEmail(newUser.email, newUser.verificationToken);
+            res.status(201).json({message:"User registered successfully. Please verify your email to login"})
+
+
+             console.log("email sent")
         } catch (error) {
             console.log("Error registring the user ", error);
             res.status(500).json({ message: "Registration failed" });
