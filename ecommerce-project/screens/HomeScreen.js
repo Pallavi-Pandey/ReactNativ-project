@@ -24,7 +24,7 @@ import { useSelector } from "react-redux";
 import { BottomModal, SlideAnimation, ModalContent } from "react-native-modals";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { UserType } from "../UserContext";
-import jwt_decode from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 const HomeScreen = () => {
   const list = [
@@ -248,7 +248,10 @@ const HomeScreen = () => {
   useEffect(() => {
     const fetchUser = async () => {
       const token = await AsyncStorage.getItem("authToken");
-      const decodedToken = jwt_decode(token);
+      console.log('11111',token)
+
+      const decodedToken = jwtDecode(token);
+      console.log(decodedToken)
       const userId = decodedToken.userId;
       setUserId(userId);
     };

@@ -139,7 +139,7 @@ app.post('/login', async (req, res) => {
 });
 
 //endpoint to store a new address to the backend
-app.post('/address', async (req, res) => {
+app.post('/addresses', async (req, res) => {
     try {
         const { userId, address } = req.body;
         const user = await User.findById(userId);

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import React, { useEffect, useState,useContext } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import jwt_decode from "jwt-decode"
+import jwtDecode from "jwt-decode"
 import { UserType } from "../UserContext";
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
@@ -26,7 +26,8 @@ const AddressScreen = () => {
   useEffect(() => {
     const fetchUser = async() => {
         const token = await AsyncStorage.getItem("authToken");
-        const decodedToken = jwt_decode(token);
+        const decodedToken = jwtDecode(token);
+        console.log("aaaaaaaaaa",decodedToken)
         const userId = decodedToken.userId;
         setUserId(userId)
     }
