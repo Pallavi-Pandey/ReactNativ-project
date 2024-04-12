@@ -9,7 +9,7 @@ import {
     Pressable,
     Alert
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
@@ -19,6 +19,19 @@ const LoginScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigation = useNavigation();
+    useEffect(() => {
+        const checkLoginStatus = async () => {
+            try{
+                const token = await AsyncStorage.getItem("authToken");
+                if(token){
+                    navigation.replace("Main");
+                }
+            }catch(error){
+                console.log("error message",error);
+            }
+        };
+        checkLoginStatus();
+    }, []);
     const handelLogin = () => {
         const user = {
             email: email,
