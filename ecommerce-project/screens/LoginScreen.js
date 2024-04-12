@@ -7,17 +7,36 @@ import {
     KeyboardAvoidingView,
     TextInput,
     Pressable,
+    Alert
 } from "react-native";
 import React, { useState } from "react";
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginScreen = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigation = useNavigation();
+    const handelLogin = () => {
+        const user = {
+            email: email,
+            password: password,
+        }
+        axios.post("http://192.168.43.194:8000/login", user)
+        .then((response) => {
+            console.log(response);
+            const token = response.data.token;
+            AsyncStorage.setItem("authToken", token);
+            navigation.replace("Main");
+        }).catch((error) => {
+            Alert.alert("Login Error","Invalid Credentials");
+            console.log(error);
+        })
+    }
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: "white", alignItems: "center" }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: "white", alignItems: "center", marginTop: 50 }}>
             <View>
                 <Image
                     style={{ width: 150, height: 100 }}
@@ -86,6 +105,7 @@ const LoginScreen = () => {
                 </View>
                 <View style={{ marginTop: 50, alignItems: "center" }}/>
                     <Pressable 
+                    onPress={handelLogin}
                     style={{ 
                         width: 200, 
                         backgroundColor: "orange", 
