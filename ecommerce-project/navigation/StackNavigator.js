@@ -11,6 +11,10 @@ import { AntDesign } from '@expo/vector-icons';
 import ProductInfoScreen from "../screens/ProductInfoScreen";
 import AddAddressScreen from '../screens/AddAddressScreen';
 import AddressScreen from "../screens/AddressScreen";
+import CartScreen from '../screens/CartScreen'
+import ProfileScreen from '../screens/ProfileScreen'
+import ConfirmationScreen from '../screens/ConfirmationScreen'
+import OrderScreen from '../screens/OrderScreen'
 
 
 
@@ -36,7 +40,7 @@ const StackNavigator = () => {
                     }}
                 />
                 <Tab.Screen name="Profile"
-                    component={HomeScreen}
+                    component={ProfileScreen}
                     options={{
                         tabBarLabel: "Profile",
                         tabBarLabelStyle: { color: "#088E97" },
@@ -50,7 +54,7 @@ const StackNavigator = () => {
                     }}
                 />
                 <Tab.Screen name="Cart"
-                    component={HomeScreen}
+                    component={CartScreen}
                     options={{
                         tabBarLabel: "Cart",
                         tabBarLabelStyle: { color: "#088E97" },
@@ -99,6 +103,17 @@ const StackNavigator = () => {
                     component={AddressScreen}
                     options={{ headerShown: false }}
                 />
+                <Stack.Screen
+                    name="Confirm"
+                    component={ConfirmationScreen}
+                    options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                    name="Order"
+                    component={OrderScreen}
+                    options={{ headerShown: false }}
+                />
+                
 
             </Stack.Navigator>
         </NavigationContainer>
